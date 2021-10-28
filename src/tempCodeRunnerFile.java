@@ -1,0 +1,2 @@
+
+        int idx = this.counter;
