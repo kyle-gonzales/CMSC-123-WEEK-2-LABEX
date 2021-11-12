@@ -1,16 +1,16 @@
 import java.lang.reflect.Array;
 
-public class List <E>{
+public class List<E> {
 
     private E[] arr;
     private int counter;
 
-    public List (E[] a){
+    public List(E[] a) {
         this.arr = a;
         this.counter = this.arr.length;
     }
 
-    public List (Class <E> c) {
+    public List(Class<E> c) {
         @SuppressWarnings("unchecked")
         E[] x = (E[]) Array.newInstance(c, 5);
         this.arr = x;
@@ -22,7 +22,7 @@ public class List <E>{
         for (int i = 0; i < this.counter; i++) {
 
             if (i < this.counter - 1) {
-                result += this.arr[i] + ", "; //! this might need to be unboxed or toString()
+                result += this.arr[i] + ", "; // ! this might need to be unboxed or toString()
 
             } else {
                 result += this.arr[i];
@@ -33,7 +33,7 @@ public class List <E>{
         System.out.println(result);
     }
 
-    public void insert(Class <E> c,int idx, E x) {
+    public void insert(Class<E> c, int idx, E x) {
         if (idx > this.counter) {
             throw new IllegalArgumentException("Index Out Of Range!"); // [2, 1, 3] insert(10, 3)
         }
@@ -42,7 +42,8 @@ public class List <E>{
 
         if (this.counter > this.arr.length) {
             @SuppressWarnings("unchecked")
-            E[] newArray = (E[]) Array.newInstance(c, this.arr.length * 2); // resize the array //! cannot make generic array
+            E[] newArray = (E[]) Array.newInstance(c, this.arr.length * 2); // resize the array //! cannot make generic
+                                                                            // array
 
             for (int i = 0; i < this.counter; i++) {
                 if (i < idx) {
@@ -63,13 +64,14 @@ public class List <E>{
         }
     }
 
-    public void insert(Class <E> c, E x) {
+    public void insert(Class<E> c, E x) {
         int idx = this.counter;
-        this.counter ++;
+        this.counter++;
 
         if (this.counter > this.arr.length) {
             @SuppressWarnings("unchecked")
-            E[] newArray = (E[]) Array.newInstance(c, this.arr.length * 2); // resize the array //! cannot make generic array
+            E[] newArray = (E[]) Array.newInstance(c, this.arr.length * 2); // resize the array //! cannot make generic
+                                                                            // array
 
             for (int i = 0; i < this.counter; i++) {
                 if (i < idx) {
@@ -124,32 +126,38 @@ public class List <E>{
         if (condition == "==") {
             for (int i = 0; i < this.counter; i++) {
                 Integer m = Integer.valueOf(this.arr[i].toString());
-                if (m == x) result.insert(Integer.class, i);
+                if (m == x)
+                    result.insert(Integer.class, i);
             }
         } else if (condition == ">") {
             for (int i = 0; i < this.counter; i++) {
                 Integer m = Integer.valueOf(this.arr[i].toString());
-                if (m > x) result.insert(Integer.class, i);
+                if (m > x)
+                    result.insert(Integer.class, i);
             }
         } else if (condition == "<") {
             for (int i = 0; i < this.counter; i++) {
                 Integer m = Integer.valueOf(this.arr[i].toString());
-                if (m < x) result.insert(Integer.class, i);
+                if (m < x)
+                    result.insert(Integer.class, i);
             }
         } else if (condition == "<=") {
             for (int i = 0; i < this.counter; i++) {
                 Integer m = Integer.valueOf(this.arr[i].toString());
-                if (m <= x) result.insert(Integer.class, i);
+                if (m <= x)
+                    result.insert(Integer.class, i);
             }
         } else if (condition == ">=") {
             for (int i = 0; i < this.counter; i++) {
                 Integer m = Integer.valueOf(this.arr[i].toString());
-                if (m >= x) result.insert(Integer.class, i);
+                if (m >= x)
+                    result.insert(Integer.class, i);
             }
         } else if (condition == "!=") {
             for (int i = 0; i < this.counter; i++) {
                 Integer m = Integer.valueOf(this.arr[i].toString());
-                if (m != x) result.insert(Integer.class, i);
+                if (m != x)
+                    result.insert(Integer.class, i);
             }
         } else {
             throw new Error("There is something wrong!");
@@ -158,36 +166,56 @@ public class List <E>{
         return result;
     }
 
-    public void RemoveAll(Integer x, String condition) { //! needs to be fixed
+    public void RemoveAll(Integer x, String condition) { // ! needs to be fixed
         if (condition == "==") {
             for (int i = 0; i < this.counter; i++) {
                 Integer m = Integer.valueOf(this.arr[i].toString());
-                if (m == x) this.remove(i);
+                if (m == x) {
+                    this.remove(i);
+                    i--;
+                }
             }
         } else if (condition == ">") {
             for (int i = 0; i < this.counter; i++) {
                 Integer m = Integer.valueOf(this.arr[i].toString());
-                if (m > x) this.remove(i);
+                if (m > x) {
+                    this.remove(i);
+                    i--;
+                }
+
             }
         } else if (condition == "<") {
             for (int i = 0; i < this.counter; i++) {
                 Integer m = Integer.valueOf(this.arr[i].toString());
-                if (m < x) this.remove(i);
+                if (m < x) {
+                    this.remove(i);
+                    i--;
+                }
+
             }
         } else if (condition == "<=") {
             for (int i = 0; i < this.counter; i++) {
                 Integer m = Integer.valueOf(this.arr[i].toString());
-                if (m <= x) this.remove(i);
+                if (m <= x) {
+                    this.remove(i);
+                    i--;
+                }
             }
         } else if (condition == ">=") {
             for (int i = 0; i < this.counter; i++) {
                 Integer m = Integer.valueOf(this.arr[i].toString());
-                if (m >= x) this.remove(i);
+                if (m >= x) {
+                    this.remove(i);
+                    i--;
+                }
             }
         } else if (condition == "!=") {
             for (int i = 0; i < this.counter; i++) {
                 Integer m = Integer.valueOf(this.arr[i].toString());
-                if (m != x) this.remove(i);
+                if (m != x) {
+                    this.remove(i);
+                    i--;
+                }
             }
         } else {
             throw new Error("There is something wrong!");
@@ -200,12 +228,14 @@ public class List <E>{
         if (condition == "==") {
             for (int i = 0; i < this.counter; i++) {
                 String m = this.arr[i].toString();
-                if (m == x) result.insert(Integer.class, i);
+                if (m == x)
+                    result.insert(Integer.class, i);
             }
         } else if (condition == "!=") {
             for (int i = 0; i < this.counter; i++) {
                 String m = this.arr[i].toString();
-                if (m != x) result.insert(Integer.class, i);
+                if (m != x)
+                    result.insert(Integer.class, i);
             }
         } else {
             throw new Error("There is something wrong!");
@@ -214,23 +244,28 @@ public class List <E>{
         return result;
     }
 
-    public void RemoveAll(String x, String condition) { //! Fix this 
-        //List<Integer> result = new List<Integer>(Integer.class);
+    public void RemoveAll(String x, String condition) { // ! Fix this
+        // List<Integer> result = new List<Integer>(Integer.class);
 
         if (condition == "==") {
             for (int i = 0; i < this.counter; i++) {
                 String m = this.arr[i].toString();
-                if (m == x) this.remove(i);
+                if (m == x) {
+                    this.remove(i);
+                    i--;
+                }
             }
         } else if (condition == "!=") {
             for (int i = 0; i < this.counter; i++) {
                 String m = this.arr[i].toString();
-                if (m != x) this.remove(i);
+                if (m != x) {
+                    this.remove(i);
+                    i--;
+                }
             }
         } else {
             throw new Error("There is something wrong!");
         }
     }
-
 
 }
